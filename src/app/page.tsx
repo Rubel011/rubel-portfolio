@@ -1,5 +1,9 @@
-import { ComponentExample } from "@/components/component-example";
+import { Header } from "@/components/customs/header";
 
 export default function Page() {
-return <ComponentExample />;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
