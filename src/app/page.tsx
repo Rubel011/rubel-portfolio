@@ -13,7 +13,12 @@ export default function Page() {
       <Header />
       <main className="mx-auto max-w-4xl px-6">
         <Hero />
-       
+        <SocialLinks />
+        <Experience />
+        <GitHubStats />
+        <Blog />
+        <CallToAction />
+        <Footer />
       </main>
     </>
   );
