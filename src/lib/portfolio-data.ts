@@ -24,7 +24,7 @@ export const siteConfig = {
     open: true,
     email: "rubelforidi@gmail.com",
   },
-  location: "Bangalore, India",
+  location: "Hyderabad, India",
   socials: {
     github: "https://github.com/Rubel011",
     linkedin: "https://linkedin.com",

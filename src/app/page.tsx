@@ -16,7 +16,7 @@ export default function Page() {
         <SocialLinks />
         <Experience />
         <GitHubStats />
-        <Blog />
+        {/* <Blog /> */}
         <CallToAction />
         <Footer />
       </main>
