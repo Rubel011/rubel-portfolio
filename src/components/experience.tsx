@@ -2,50 +2,68 @@
 
 import { SectionTitle } from "@/components/section-title";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { FadeIn } from "@/components/ui/fade-in";
 import { experiences } from "@/lib/portfolio-data";
-import { CardSpotlight } from "./ui/card-spotlight";
+import { ArrowUpRightIcon } from "@phosphor-icons/react";
+import { BadgeCompo } from "./badge.compo";
 
 export function Experience() {
   return (
     <section className="space-y-10 py-16">
-      <SectionTitle
-        title="Experience"
-        subtitle="Places I've made an impact"
-      />
+      <SectionTitle title="Experience" subtitle="Places I've made an impact" />
       <div className="relative space-y-8">
         {/* Timeline line */}
         <div className="absolute left-1.75 top-2 bottom-2 hidden w-px bg-linear-to-b from-purple-500/50 via-blue-500/30 to-transparent sm:block" />
 
         {experiences.map((exp, index) => (
           <FadeIn key={exp.company} delay={index * 0.15}>
-            <div className="relative flex gap-6">
+            <div className="relative flex gap-6" key={index}>
               {/* Timeline dot */}
               <div className="relative z-10 mt-1.5 hidden sm:block">
                 <div className="h-3.5 w-3.5 rounded-full border-2 border-purple-500 bg-black" />
               </div>
 
-              <CardSpotlight className="flex-1 border border-neutral-800/50 bg-neutral-900/30 p-6">
-                <div className="space-y-4">
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                      <h3 className="text-base font-semibold text-neutral-100">
-                        {exp.company}
-                      </h3>
-                      <p className="text-sm text-neutral-400">
-                        {exp.role}{" "}
-                        <span className="text-neutral-600">&middot;</span>{" "}
-                        <span className="text-neutral-500">{exp.type}</span>
-                      </p>
-                    </div>
+              <Card className="flex-1 border-neutral-800/50 bg-neutral-900/30 py-0">
+                <CardHeader className="px-6 pt-5 pb-0">
+                  <CardTitle className="text-base font-semibold text-neutral-100">
+                    <a
+                      href={exp.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 transition-colors hover:text-purple-400"
+                    >
+                      {exp.company}
+                      <ArrowUpRightIcon className="size-3.5 text-neutral-500" />
+                    </a>
+                  </CardTitle>
+                  <CardDescription className="text-sm text-neutral-400">
+                    {exp.role}{" "}
+                    <span className="text-neutral-600">&middot;</span>{" "}
+                    <span className="text-neutral-500">{exp.type}</span>
+                  </CardDescription>
+                  <CardAction>
                     <Badge
                       variant="outline"
-                      className="w-fit border-neutral-800 text-xs text-neutral-500"
+                      className="border-neutral-800 text-xs text-neutral-500"
                     >
                       {exp.period}
                     </Badge>
-                  </div>
+                  </CardAction>
+                </CardHeader>
 
+                <CardContent className="px-6 pt-4 pb-0">
+                  <Separator className="mb-4 bg-neutral-800/60" />
                   <ul className="space-y-2">
                     {exp.accomplishments.map((item, i) => (
                       <li
@@ -57,20 +75,38 @@ export function Experience() {
                       </li>
                     ))}
                   </ul>
+                </CardContent>
 
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {exp.techStack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="secondary"
-                        className="border border-neutral-800/50 bg-neutral-800/30 text-[11px] text-neutral-500"
+                <CardFooter className="flex-wrap gap-1.5 px-6 pt-4 pb-5">
+                  {exp.techStack.map((tech, ind) => (
+                    // <Badge
+                    //   key={tech}
+                    //   variant="secondary"
+                    //   className="border border-neutral-800/50 bg-neutral-800/30 text-[11px] text-neutral-500"
+                    // >
+                    //   {tech}
+                    // </Badge>
+                    <BadgeCompo key={ind} text={tech} />
+                  ))}
+                  <div className="ml-auto">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-neutral-500 hover:text-purple-400"
+                      asChild
+                    >
+                      <a
+                        href={exp.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        {tech}
-                      </Badge>
-                    ))}
+                        Visit
+                        <ArrowUpRightIcon className="size-3" />
+                      </a>
+                    </Button>
                   </div>
-                </div>
-              </CardSpotlight>
+                </CardFooter>
+              </Card>
             </div>
           </FadeIn>
         ))}

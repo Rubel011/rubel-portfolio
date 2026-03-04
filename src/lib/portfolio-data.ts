@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "Rubel Foridi",
+  shortName: "Rubel",
   role: "Full Stack Developer",
   skills: ["Full Stack", "Backend", "DevOps"],
   tagline:
@@ -43,32 +44,40 @@ export const navLinks = [
 
 export const experiences = [
   {
-    company: "Acme Corp",
-    role: "Senior Frontend Developer",
+    company: "Codestrup Infotech Private Limited",
+    website: "https://codestrup.com/",
+    role: "Backend Developer",
     type: "Remote",
-    period: "Jan 2024 - Present",
+    period: "May 2024 - Present",
     accomplishments: [
       "Led the redesign of the main product dashboard, improving user engagement by 40%",
       "Built a reusable component library with 50+ components following Atomic Design principles",
     ],
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Redux Toolkit",
-      "React Query",
-    ],
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
   },
   {
-    company: "StartupXYZ",
-    role: "Full Stack Developer",
-    type: "Hybrid",
-    period: "Jun 2022 - Dec 2023",
+    company: "Wexa AI",
+    website: "https://wexa.ai",
+    role: "Software Development Engineer",
+    type: "Onsite - Founder's office",
+    period: "Jan 2024 - May 2024",
     accomplishments: [
       "Designed and implemented RESTful APIs handling 10K+ requests per minute",
       "Reduced page load time by 60% through code splitting and lazy loading strategies",
     ],
-    techStack: ["React", "Node.js", "PostgreSQL", "Docker", "AWS"],
+    techStack: [
+      "React",
+      "Next.js",
+      "React Query",
+      "Tailwind CSS",
+      "Shadcn/ui",
+      "Node.js",
+      "Express.js",
+      "TypeScript",
+      "MongoDB",
+      "Figma",
+      "Jira",
+    ],
   },
 ];
 
@@ -112,8 +121,7 @@ export const projects = [
     repo: "Rubel011/Vetspot_veterinary-clinic_website",
     links: {
       live: "https://unarmed-science-115.vercel.app/",
-      github:
-        "https://github.com/Rubel011/Vetspot_veterinary-clinic_website",
+      github: "https://github.com/Rubel011/Vetspot_veterinary-clinic_website",
     },
     gradient:
       "linear-gradient(135deg, rgb(16 185 129 / 0.2), rgb(6 182 212 / 0.2))",
@@ -185,8 +193,7 @@ export const projects = [
     repo: "Rubel011/RoamStay-Vacation_Rental_Platform",
     links: {
       live: "https://vacation-rental-platform-kappa.vercel.app/",
-      github:
-        "https://github.com/Rubel011/RoamStay-Vacation_Rental_Platform",
+      github: "https://github.com/Rubel011/RoamStay-Vacation_Rental_Platform",
     },
     gradient:
       "linear-gradient(135deg, rgb(14 165 233 / 0.2), rgb(34 197 94 / 0.2))",
