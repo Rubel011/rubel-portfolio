@@ -6,6 +6,7 @@ import { GitHubStats } from "@/components/github-stats";
 import { Blog } from "@/components/blog";
 import { CallToAction } from "@/components/cta";
 import { Footer } from "@/components/footer";
+import { NameBanner } from "@/components/name-banner";
 
 export default function Page() {
   return (
@@ -16,8 +17,9 @@ export default function Page() {
         <SocialLinks />
         <Experience />
         <GitHubStats />
-        {/* <Blog /> */}
+        <Blog />
         <CallToAction />
+        <NameBanner />
         <Footer />
       </main>
     </>
