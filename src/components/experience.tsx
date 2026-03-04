@@ -78,7 +78,7 @@ export function Experience() {
                 </CardContent>
 
                 <CardFooter className="flex-wrap gap-1.5 px-6 pt-4 pb-5">
-                  {exp.techStack.map((tech) => (
+                  {exp.techStack.map((tech, ind) => (
                     // <Badge
                     //   key={tech}
                     //   variant="secondary"
@@ -86,7 +86,7 @@ export function Experience() {
                     // >
                     //   {tech}
                     // </Badge>
-                    <BadgeCompo text={tech} />
+                    <BadgeCompo key={ind} text={tech} />
                   ))}
                   <div className="ml-auto">
                     <Button

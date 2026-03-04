@@ -46,7 +46,7 @@ export const experiences = [
   {
     company: "Codestrup Infotech Private Limited",
     website: "https://codestrup.com/",
-    role: "Backend  Developer",
+    role: "Backend Developer",
     type: "Remote",
     period: "May 2024 - Present",
     accomplishments: [
@@ -59,7 +59,7 @@ export const experiences = [
     company: "Wexa AI",
     website: "https://wexa.ai",
     role: "Software Development Engineer",
-    type: "Onsite - Founder office",
+    type: "Onsite - Founder's office",
     period: "Jan 2024 - May 2024",
     accomplishments: [
       "Designed and implemented RESTful APIs handling 10K+ requests per minute",
