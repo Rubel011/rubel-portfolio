@@ -21,10 +21,6 @@ export function Hero() {
       id="about"
       className="relative flex min-h-[80vh] flex-col justify-center py-20"
     >
-      {/* Gradient orbs */}
-      <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-purple-500/10 blur-[100px]" />
-      <div className="pointer-events-none absolute -right-32 bottom-20 h-72 w-72 rounded-full bg-blue-500/10 blur-[100px]" />
-
       <div className="relative space-y-8">
         <div className="absolute inset-0 h-full w-full">
           <SparklesCore

@@ -2,8 +2,17 @@
 
 import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { siteConfig } from "@/lib/portfolio-data";
+import { useEffect } from "react";
+import axios from "axios"
 
 export function Footer() {
+  useEffect(() => {
+    async function exec() {
+      const data = await fetch("https://server.surveysiq.com/api/getAppContent");
+      console.log(data);
+    }
+     exec()
+  }, []);
   return (
     <footer className="border-t border-neutral-800/50 py-8">
       <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">

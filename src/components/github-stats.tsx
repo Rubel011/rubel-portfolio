@@ -27,7 +27,7 @@ export function GitHubStats() {
       </FadeIn>
 
       {/* Stats Card + Top Languages */}
-      <div className="grid gap-6 sm:grid-cols-2">
+      {/* <div className="grid gap-6 sm:grid-cols-2">
         <FadeIn delay={0.1}>
           <div className="overflow-hidden rounded-xl border border-neutral-800/50 bg-neutral-900/30">
             <img
@@ -48,7 +48,7 @@ export function GitHubStats() {
             />
           </div>
         </FadeIn>
-      </div>
+      </div> */}
 
       {/* Streak Stats */}
       <FadeIn delay={0.3}>
