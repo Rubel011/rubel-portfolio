@@ -1,8 +1,9 @@
 #!/bin/sh
 
 npx --no -- commitlint --edit ${1}
+RESULT=$?
 
-if [ $? -ne 0 ]; then
+if [ $RESULT -ne 0 ]; then
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "  COMMIT MESSAGE RULES"
