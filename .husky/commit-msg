@@ -1,7 +1,7 @@
 #!/bin/sh
 
-npx --no -- commitlint --edit ${1}
-RESULT=$?
+RESULT=0
+npx --no -- commitlint --edit ${1} || RESULT=$?
 
 if [ $RESULT -ne 0 ]; then
   echo ""
