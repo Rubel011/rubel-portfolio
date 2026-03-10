@@ -13,17 +13,6 @@ export default function Page() {
   return (
     <>
       <Header />
-      <div className="absolute inset-0 h-full w-full">
-        <SparklesCore
-          background="transparent"
-          minSize={0.4}
-          maxSize={1.2}
-          particleDensity={80}
-          className="h-full w-full"
-          particleColor="#a78bfa"
-          speed={1.5}
-        />
-      </div>
       <main className="mx-auto max-w-4xl px-6 ">
         <Hero />
         <SocialLinks />
@@ -31,11 +20,9 @@ export default function Page() {
         <GitHubStats />
         {/* <Blog /> */}
         <CallToAction />
-      </main>
-      <NameBanner />
-      <div className="mx-auto max-w-4xl px-6">
+        <NameBanner />
         <Footer />
-      </div>
+      </main>
     </>
   );
 }
