@@ -2,6 +2,8 @@
 
 import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
 import { siteConfig } from "@/lib/portfolio-data";
+import { useEffect } from "react";
+import axios from "axios";
 
 export function Footer() {
   return (

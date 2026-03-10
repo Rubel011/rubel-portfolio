@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 export const BadgeCompo = ({ text }: { text: string }) => {
   return (
-    <a
-    //   href="https://www.producthunt.com/posts/awesome-framer-motion-components"
-      target="__blank"
+    <span
+      //   href="https://www.producthunt.com/posts/awesome-framer-motion-components"
+      // target="__blank"
       className="bg-slate-900 no-underline group mb-8 cursor-pointer relative  shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block"
     >
       <span className="absolute inset-0 overflow-hidden rounded-full">
@@ -33,6 +33,6 @@ export const BadgeCompo = ({ text }: { text: string }) => {
         </svg> */}
       </div>
       <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-blue-400/90 to-blue-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
-    </a>
+    </span>
   );
 };
