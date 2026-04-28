@@ -48,8 +48,10 @@ export function Experience() {
                     </a>
                   </CardTitle>
                   <CardDescription className="text-sm text-neutral-400">
-                    {exp.role}{" "}
-                    <span className="text-neutral-600">&middot;</span>{" "}
+                    {exp.role}
+                    <span className="text-neutral-600">&middot;</span>
+                    <span className="text-neutral-500">{exp.location}</span>
+                    <span className="text-neutral-600">&middot;</span>
                     <span className="text-neutral-500">{exp.type}</span>
                   </CardDescription>
                   <CardAction>

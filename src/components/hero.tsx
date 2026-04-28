@@ -80,34 +80,37 @@ export function Hero() {
             ))}
           </div>
         </FadeIn>
-
-        <FadeIn delay={0.7}>
-          <div className="flex flex-wrap items-center gap-3 pt-4">
-            <Button
-              size="lg"
-              className="rounded-xl bg-linear-to-r from-purple-600 to-blue-600 px-6 font-medium text-white shadow-lg shadow-purple-500/20 transition-all hover:from-purple-500 hover:to-blue-500 hover:shadow-purple-500/30"
-              asChild
-            >
-              <Link href={`mailto:${siteConfig.availability.email}`}>
-                <EnvelopeSimpleIcon size={18} className="mr-2" />
-                Get in Touch
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="rounded-xl border-neutral-800 bg-neutral-900/50 px-6 text-neutral-300 hover:bg-neutral-800 hover:text-white"
-              asChild
-            >
-              <Link href={siteConfig.socials.resume}>
-                <DownloadSimpleIcon size={18} className="mr-2" />
-                Resume
-              </Link>
-            </Button>
-          </div>
-        </FadeIn>
       </div>
-
+      {/* // Action buttons  */}
+      <FadeIn delay={0.7}>
+        <div className="flex flex-wrap items-center gap-3 pt-4">
+          <Button
+            size="lg"
+            className="rounded-xl bg-linear-to-r from-purple-600 to-blue-600 px-6 font-medium text-white shadow-lg shadow-purple-500/20 transition-all hover:from-purple-500 hover:to-blue-500 hover:shadow-purple-500/30"
+            asChild
+          >
+            <Link href={`mailto:${siteConfig.availability.email}`}>
+              <EnvelopeSimpleIcon size={18} className="mr-2" />
+              Get in Touch
+            </Link>
+          </Button>
+          <Button
+            variant="outline"
+            size="lg"
+            className="rounded-xl border-neutral-800 bg-neutral-900/50 px-6 text-neutral-300 hover:bg-neutral-800 hover:text-white"
+            asChild
+          >
+            <Link
+              href={siteConfig.socials.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <DownloadSimpleIcon size={18} className="mr-2" />
+              Resume
+            </Link>
+          </Button>
+        </div>
+      </FadeIn>
       {/* Scroll indicator */}
       <FadeIn delay={1} className="mt-auto pt-12">
         <div className="flex items-center gap-2 text-xs text-neutral-600">
