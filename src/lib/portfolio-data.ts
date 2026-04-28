@@ -2,33 +2,28 @@ export const siteConfig = {
   name: "Rubel Foridi",
   shortName: "Rubel",
   role: "Full Stack Developer",
-  skills: ["Full Stack", "Backend", "DevOps"],
+  skills: [
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "Redis",
+    "AWS ECS",
+    "React",
+    "TypeScript",
+  ],
   tagline:
-    "I design and build scalable backend systems and modern full-stack web applications with Node.js and React, combining clean code, thoughtful system design, and high-quality UI using shadcn/ui on cloud-native infrastructure.",
+    "Backend-focused Full Stack Developer with 2+ years of experience building and scaling high-traffic consumer platforms serving 1M+ active users. Expert in Node.js, Express.js, MongoDB, Redis, BullMQ, and AWS ECS with proven track record of payment gateway integrations and CI/CD automation.",
 
-  //     Version 1. Clean and Professional
-
-  // I build scalable backend systems and high-performance full-stack web applications using Node.js, React, and modern cloud infrastructure, with clean architecture and polished, production-ready UI powered by shadcn/ui.
-
-  // Version 2. Confident and Outcome-Focused
-
-  // I design and build scalable backend systems and modern full-stack web applications with Node.js and React, combining clean code, thoughtful system design, and high-quality UI using shadcn/ui on cloud-native infrastructure.
-
-  // Version 3. Strong Personal Brand
-
-  // Full-stack developer focused on scalable backend architecture and modern web applications. I build fast, reliable systems with Node.js, React, and cloud-native infrastructure, delivering clean code, thoughtful design, and polished UI using shadcn/ui.
-
-  // Version 4. Bold and Senior-Leaning
-
-  // I build scalable, cloud-native backend systems and modern full-stack web applications with Node.js and React, emphasizing performance, maintainability, and clean architecture, backed by thoughtful UX and polished UI using shadcn/ui.
   availability: {
     open: true,
     email: "rubelforidi@gmail.com",
   },
-  location: "Hyderabad, India",
+  location: "Kolkata, West Bengal, India",
+  phone: "+91 9064527720",
   socials: {
     github: "https://github.com/Rubel011",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://linkedin.com/in/rubel-foridi",
+    portfolio: "https://rubelforidi.vercel.app",
     resume:
       "https://drive.google.com/file/d/1NB33EV8fyFEyqE2YpketzAROuZfDS_WH/view?usp=sharing",
   },
@@ -44,40 +39,89 @@ export const navLinks = [
 
 export const experiences = [
   {
-    company: "Codestrup Infotech Private Limited",
-    website: "https://codestrup.com/",
-    role: "Backend Developer",
-    type: "Remote",
-    period: "May 2024 - Present",
+    company: "Techaircraft Solution Pvt. Ltd.",
+    website: "https://techaircraft.com",
+    role: "Full Stack Developer",
+    location: "Kolhapur, Maharashtra",
+    type: "(Remote)",
+    period: "Mar 2025 – Present",
     accomplishments: [
-      "Led the redesign of the main product dashboard, improving user engagement by 40%",
-      "Built a reusable component library with 50+ components following Atomic Design principles",
+      "Built and scaled two live consumer platforms — SurveysIQ and Earneasy24 — serving 1M+ active users using Node.js, Express.js, MongoDB, and AWS ECS Fargate",
+      "Engineered high-performance backend systems with Redis caching, BullMQ job queues, and MongoDB aggregation pipelines, eliminating 504 timeout errors and reducing API latency significantly",
+      "Integrated multiple payment gateways (Razorpay, Easebuzz, Paytm, Instamojo) with end-to-end webhook processing, UPI deduplication logic, and real-time transaction reconciliation",
+      "Designed and deployed CI/CD pipelines using GitHub Actions, AWS ECS Fargate, and CloudFront CDN, improving deployment reliability and reducing infrastructure costs",
+      "Implemented FCM push notification batching for large-scale audience delivery",
     ],
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    techStack: [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redis",
+      "BullMQ",
+      "AWS ECS",
+      "CloudFront",
+      "GitHub Actions",
+    ],
+  },
+  {
+    company: "Codestrup Infotech Pvt. Ltd.",
+    website: "https://codestrup.com",
+    role: "Backend Developer",
+    location: "Pune, Maharashtra",
+    type: "(Remote)",
+    period: "Apr 2024 – Feb 2025",
+    accomplishments: [
+      "Integrated 10+ major payment gateways (Razorpay, PhonePe, Paytm, and others) delivering PCI-compliant transaction processing across 3+ consumer products with 99.9% uptime",
+      "Architected and launched a referral system from scratch, achieving a 30%+ uplift in new user registrations within the first quarter of deployment",
+      "Managed end-to-end deployment pipeline using AWS ECS, ECR, and Docker; reduced average deployment time by ~40% through pipeline automation and container layer caching",
+      "Scaled backend architecture from ~5M to 14M+ users by restructuring MongoDB indexes, introducing connection pooling, and offloading async tasks to a queue-based worker model",
+    ],
+    techStack: [
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "AWS ECS",
+      "AWS ECR",
+      "Docker",
+      "Payment Gateways",
+      "Redis",
+    ],
   },
   {
     company: "Wexa AI",
     website: "https://wexa.ai",
     role: "Software Development Engineer",
-    type: "Onsite - Founder's office",
-    period: "Jan 2024 - May 2024",
+    location: "Hyderabad, Telangana",
+    type: "(Onsite) - Founder's office",
+    period: "Jan 2024 – May 2024",
     accomplishments: [
-      "Designed and implemented RESTful APIs handling 10K+ requests per minute",
-      "Reduced page load time by 60% through code splitting and lazy loading strategies",
+      "Delivered 15+ responsive and accessible UI components using ShadCN/UI, directly translating Figma prototypes into production-ready code with pixel-perfect accuracy",
+      "Reduced sprint backlog carryover by 20% through disciplined Jira task tracking and proactive cross-functional communication across engineering and design teams",
+      "Improved cross-browser visual consistency across 8+ platform screens, eliminating layout regressions reported in QA cycles",
     ],
     techStack: [
       "React",
       "Next.js",
-      "React Query",
-      "Tailwind CSS",
-      "Shadcn/ui",
-      "Node.js",
-      "Express.js",
+      "ShadCN/UI",
       "TypeScript",
-      "MongoDB",
+      "Tailwind CSS",
       "Figma",
       "Jira",
     ],
+  },
+  {
+    company: "Masai School",
+    website: "https://masaischool.com",
+    role: "Assessment Mentor (Assistantship Program)",
+    location: "Bengaluru, India",
+    type: "(Remote)",
+    period: "Jun 2023 – Aug 2023",
+    accomplishments: [
+      "Earned competitive selection for the Assistantship Program — one of the top performers in a cohort of 200+ students",
+      "Mentored 20+ peers across DSA, debugging, and full-stack coursework",
+      "Ran weekly group learning sessions that measurably improved mentee assignment pass rates and reduced average debugging resolution time",
+    ],
+    techStack: ["DSA", "JavaScript", "React", "Node.js"],
   },
 ];
 
