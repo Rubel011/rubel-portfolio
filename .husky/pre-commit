@@ -1,2 +1,2 @@
-pnpm exec lint-staged || exit 1
-pnpm test
+bunx lint-staged || exit 1
+bun test

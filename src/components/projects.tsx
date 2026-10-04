@@ -1,127 +1,132 @@
 "use client";
 
-import { ArrowUpRightIcon, StarIcon, GitForkIcon } from "@phosphor-icons/react";
-import { SectionTitle } from "@/components/section-title";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { FadeIn } from "@/components/ui/fade-in";
-import { SpotlightCard } from "@/components/ui/spotlight";
+import Link from "next/link";
+import { Section } from "@/components/section";
+import { ArrowUpRight } from "@/components/icons";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Empty, EmptyTitle, EmptyDescription } from "@/components/ui/empty";
 import { projects } from "@/lib/portfolio-data";
 import { useGitHubStats } from "@/hooks/use-github-stats";
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[number];
-  index: number;
-}) {
-  const stats = useGitHubStats(project.repo);
+function ProjectRow({ project }: { project: (typeof projects)[number] }) {
+  const { stats, isLoading } = useGitHubStats(project.repo);
 
   return (
-    <SpotlightCard
-      className="group h-full border border-neutral-800/50 bg-neutral-900/30"
-      spotlightColor={
-        index === 0
-          ? "rgba(139, 92, 246, 0.12)"
-          : "rgba(6, 182, 212, 0.12)"
-      }
-    >
-      {/* Project image banner */}
-      <div className="h-36 w-full overflow-hidden rounded-t-xl transition-all duration-500 group-hover:h-40">
+    <article className="grid gap-x-8 gap-y-5 sm:grid-cols-[11rem_minmax(0,1fr)] lg:grid-cols-[12rem_minmax(0,1fr)_8rem]">
+      <a
+        href={project.links.live}
+        target="_blank"
+        rel="noopener noreferrer"
+        tabIndex={-1}
+        aria-hidden="true"
+        className="block w-36 self-start overflow-hidden rounded-sm border border-border bg-muted sm:w-full"
+      >
         <img
           src={project.image}
-          alt={project.title}
-          className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          alt=""
+          loading="lazy"
+          className="aspect-video w-full object-cover object-top"
         />
-      </div>
+      </a>
 
-      <div className="space-y-4 p-5">
-        <div className="flex items-start justify-between">
-          <h3 className="text-lg font-semibold text-neutral-100 transition-colors group-hover:text-white">
-            {project.title}
-          </h3>
-          <div className="flex gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-7 gap-1 px-2 text-xs text-neutral-500 hover:text-purple-400"
-              asChild
-            >
-              <a
-                href={project.links.live}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Live <ArrowUpRightIcon size={12} />
-              </a>
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-7 gap-1 px-2 text-xs text-neutral-500 hover:text-purple-400"
-              asChild
-            >
-              <a
-                href={project.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Code <ArrowUpRightIcon size={12} />
-              </a>
-            </Button>
-          </div>
-        </div>
-
-        <p className="text-sm leading-relaxed text-neutral-500">
-          {project.description}
+      <div className="min-w-0">
+        <h3 className="t-h3">{project.title}</h3>
+        <p className="t-body measure mt-2 text-soft">{project.description}</p>
+        <p className="t-data mt-3 text-faint">
+          {project.techStack.join("  /  ")}
         </p>
-
-        <div className="flex items-center justify-between pt-1">
-          <div className="flex flex-wrap gap-1.5">
-            {project.techStack.map((tech) => (
-              <Badge
-                key={tech}
-                variant="secondary"
-                className="border border-neutral-800/50 bg-neutral-800/30 text-[11px] text-neutral-500"
-              >
-                {tech}
-              </Badge>
-            ))}
-          </div>
-
-          {stats && (
-            <div className="flex shrink-0 items-center gap-3 text-xs text-neutral-500">
-              <span className="flex items-center gap-1">
-                <StarIcon size={14} weight="fill" className="text-yellow-500/70" />
-                {stats.stars}
-              </span>
-              <span className="flex items-center gap-1">
-                <GitForkIcon size={14} className="text-neutral-500" />
-                {stats.forks}
-              </span>
-            </div>
-          )}
-        </div>
       </div>
-    </SpotlightCard>
+
+      <div className="t-data flex flex-wrap items-start gap-x-5 gap-y-2 text-faint lg:flex-col lg:items-end lg:gap-y-1.5">
+        {isLoading ? (
+          <>
+            <Skeleton className="h-4 w-16" />
+            <Skeleton className="h-4 w-16" />
+          </>
+        ) : stats ? (
+          <>
+            <span>
+              {stats.stars} {stats.stars === 1 ? "star" : "stars"}
+            </span>
+            <span>
+              {stats.forks} {stats.forks === 1 ? "fork" : "forks"}
+            </span>
+          </>
+        ) : null}
+
+        <a
+          href={project.links.live}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-quiet inline-flex items-center gap-1 text-soft hover:text-foreground"
+        >
+          Live
+          <ArrowUpRight className="size-3.5" />
+        </a>
+        <a
+          href={project.links.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-quiet inline-flex items-center gap-1 text-soft hover:text-foreground"
+        >
+          Source
+          <ArrowUpRight className="size-3.5" />
+        </a>
+      </div>
+    </article>
   );
 }
 
-export function Projects() {
+export function Projects({
+  limit,
+  label = "Selected work",
+}: {
+  limit?: number;
+  label?: string;
+}) {
+  if (projects.length === 0) {
+    return (
+      <Section id="projects" label={label}>
+        <Empty className="border border-dashed border-rule-strong">
+          <EmptyTitle>No projects listed yet</EmptyTitle>
+          <EmptyDescription>
+            Repositories and live links will appear here.
+          </EmptyDescription>
+        </Empty>
+      </Section>
+    );
+  }
+
+  const shown = limit === undefined ? projects : projects.slice(0, limit);
+
   return (
-    <section id="projects" className="space-y-10 py-16">
-      <SectionTitle
-        title="Projects"
-        subtitle="Things I've built"
-      />
-      <div className="grid gap-6 sm:grid-cols-2">
-        {projects.map((project, index) => (
-          <FadeIn key={project.title} delay={index * 0.15}>
-            <ProjectCard project={project} index={index} />
-          </FadeIn>
+    <Section
+      id="projects"
+      label={label}
+      note={
+        shown.length < projects.length
+          ? `${shown.length} of ${projects.length}`
+          : `${projects.length} projects`
+      }
+    >
+      <ul>
+        {shown.map((project) => (
+          <li
+            key={project.title}
+            className="border-b border-border py-8 first:pt-0 last:border-b-0 last:pb-0"
+          >
+            <ProjectRow project={project} />
+          </li>
         ))}
-      </div>
-    </section>
+      </ul>
+
+      {shown.length < projects.length ? (
+        <div className="mt-8">
+          <Link href="/projects" className="link-quiet t-meta text-soft">
+            All {projects.length} projects
+          </Link>
+        </div>
+      ) : null}
+    </Section>
   );
 }

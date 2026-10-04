@@ -1,22 +1,31 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/customs/smooth-scroll";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plexSans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Rubel Foridi — Full Stack Developer",
   description:
-    "A passionate developer crafting modern, performant web experiences.",
+    "Backend-focused full stack developer in Kolkata. I build and run the Node.js, MongoDB, Redis, and AWS systems behind consumer platforms with millions of users.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f7f8f9",
 };
 
 export default function RootLayout({
@@ -25,12 +34,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-black selection:bg-neutral-400/20 selection:text-neutral-200`}
-      >
-        {/* <SmoothScroll /> */}
-        {children}
+    <html lang="en" className={`${plexSans.variable} ${plexMono.variable}`}>
+      <body>
+        <TooltipProvider>
+          {children}
+          <Toaster theme="light" position="bottom-right" />
+        </TooltipProvider>
       </body>
     </html>
   );

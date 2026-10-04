@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
 
 /*
  * Animated dark fluid marble background.
@@ -111,16 +112,17 @@ const FRAGMENT_SHADER = `
   }
 `;
 
-function initGL(canvas: any) {
+function initGL(canvas: HTMLCanvasElement) {
   const gl = canvas.getContext("webgl", { antialias: false, alpha: false });
   if (!gl) return null;
 
-  function compile(type: any, src: any) {
-    const s = gl.createShader(type);
-    gl.shaderSource(s, src);
-    gl.compileShader(s);
-    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-      console.error(gl.getShaderInfoLog(s));
+  function compile(type: number, src: string) {
+    const s = gl!.createShader(type);
+    if (!s) return null;
+    gl!.shaderSource(s, src);
+    gl!.compileShader(s);
+    if (!gl!.getShaderParameter(s, gl!.COMPILE_STATUS)) {
+      console.error(gl!.getShaderInfoLog(s));
       return null;
     }
     return s;
@@ -129,6 +131,7 @@ function initGL(canvas: any) {
   const vs = compile(gl.VERTEX_SHADER, VERTEX_SHADER);
   const fs = compile(gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
   const prog = gl.createProgram();
+  if (!vs || !fs || !prog) return null;
   gl.attachShader(prog, vs);
   gl.attachShader(prog, fs);
   gl.linkProgram(prog);
@@ -157,17 +160,18 @@ function initGL(canvas: any) {
 }
 
 export default function FluidBackground() {
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const canvas: any = canvasRef.current;
-    if (!canvas) return;
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
+    const canvas: HTMLCanvasElement = canvasEl;
 
     const ctx = initGL(canvas);
     if (!ctx) return;
     const { gl, uTime, uRes } = ctx;
 
-    let raf: any;
+    let raf = 0;
     const start = performance.now();
 
     function resize() {
@@ -267,38 +271,19 @@ export default function FluidBackground() {
             justifyContent: "center",
           }}
         >
-          <button
-            style={{
-              padding: "14px 32px",
-              borderRadius: 999,
-              border: "none",
-              background: "#fff",
-              color: "#0a0a0a",
-              fontWeight: 600,
-              fontSize: 16,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
+          <Button
+            size="lg"
+            className="rounded-full bg-white px-8 font-semibold text-black hover:bg-neutral-200"
           >
             Start Building <span style={{ fontSize: 18 }}>→</span>
-          </button>
-          <button
-            style={{
-              padding: "14px 32px",
-              borderRadius: 999,
-              border: "1px solid rgba(255,255,255,0.15)",
-              background: "rgba(255,255,255,0.06)",
-              color: "#ccc",
-              fontWeight: 500,
-              fontSize: 16,
-              cursor: "pointer",
-              backdropFilter: "blur(8px)",
-            }}
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="rounded-full border-white/15 bg-white/5 px-8 font-medium text-neutral-300 backdrop-blur-md hover:bg-white/10 hover:text-white"
           >
             View on GitHub
-          </button>
+          </Button>
         </div>
       </div>
     </div>

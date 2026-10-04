@@ -1,70 +1,73 @@
-# Rubel Foridi - Full Stack Developer Portfolio
+# Rubel Foridi — Full Stack Developer Portfolio
 
-A modern, visually stunning portfolio website built with Next.js, featuring 3D elements, smooth animations, and a polished user interface.
+Personal site for Rubel Foridi, a backend-focused full stack developer in Kolkata, India.
 
-## About
+The visual language is a technical record rather than a landing page: paper canvas, blue-black ink, one flat cobalt accent, IBM Plex Sans for prose and IBM Plex Mono for numbers and stack lists. Sections are separated by hairlines, not cards. The single deliberate animation is the request trace in the hero, which runs once on load and collapses to its end state under `prefers-reduced-motion`.
 
-Hi, I'm Rubel Foridi — a Full Stack Developer based in Hyderabad, India. I design and build scalable backend systems and modern full-stack web applications with Node.js and React, combining clean code, thoughtful system design, and high-quality UI using shadcn/ui on cloud-native infrastructure.
+## Stack
 
-## Tech Stack
-
-- **Framework:** Next.js 16 (App Router)
+- **Framework:** Next.js 16 (App Router, Turbopack)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **UI Components:** shadcn/ui
-- **Animations:** Framer Motion
-- **3D Graphics:** Three.js / React Three Fiber
-- **Fonts:** Geist
+- **Styling:** Tailwind CSS v4, design tokens in `src/app/globals.css`
+- **Components:** shadcn/ui primitives (`src/components/ui`)
+- **Fonts:** IBM Plex Sans and IBM Plex Mono via `next/font`
+- **Live data:** GitHub repository stars and forks (`src/hooks/use-github-stats.ts`), contribution chart from `ghchart.rshah.org`
 
-## Features
+## Pages
 
-- Responsive design with modern aesthetics
-- Interactive 3D visual elements
-- Smooth scroll animations
-- Project showcase with live demos
-- Experience timeline
-- Contact form
-- Blog section
-- GitHub stats integration
+| Route        | Contents                                                                                                 |
+| ------------ | -------------------------------------------------------------------------------------------------------- |
+| `/`          | Hero and request trace, experience record, three selected projects, writing, contribution chart, contact |
+| `/projects`  | All six projects                                                                                         |
+| `/dashboard` | Component scratch pad, not linked from the site                                                          |
 
-## Getting Started
+## Getting started
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Run development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Start production server
-pnpm start
+bun install
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Project Structure
+```bash
+bun run build   # production build
+bun start       # serve the production build
+bun run lint
+```
+
+Bun is the only supported package manager for this repository.
+
+## Editing content
+
+All copy, roles, projects, and links live in `src/lib/portfolio-data.ts`. The page reads from it directly, so adding an experience entry or project needs no component changes. A blog post renders as a link only when its `slug` is a real URL.
+
+## Project structure
 
 ```
 src/
-├── app/              # Next.js App Router pages
-├── components/       # React components
-│   ├── ui/          # shadcn/ui components
-│   ├── header.tsx
-│   ├── hero.tsx
-│   ├── projects.tsx
-│   ├── experience.tsx
-│   └── ...
-├── lib/             # Utilities and data
-└── hooks/           # Custom React hooks
+├── app/                  # Routes, global tokens, layout
+├── components/
+│   ├── ui/               # shadcn/ui primitives
+│   ├── header.tsx        # Sticky masthead and mobile sheet nav
+│   ├── hero.tsx          # Name, positioning, actions
+│   ├── request-trace.tsx # Hero pipeline diagram (CSS-only animation)
+│   ├── section.tsx       # Section shell with sticky label column
+│   ├── experience.tsx    # Roles as chronological record rows
+│   ├── projects.tsx      # Project index rows
+│   ├── writing.tsx       # Posts
+│   ├── open-source.tsx   # Contribution chart
+│   ├── contact.tsx       # Email, copy action, local time
+│   ├── footer.tsx
+│   └── icons.tsx         # The three inline SVG glyphs in use
+├── hooks/
+└── lib/
 ```
 
 ## Connect
 
 - [GitHub](https://github.com/Rubel011)
-- [LinkedIn](https://linkedin.com)
+- [LinkedIn](https://linkedin.com/in/rubel-foridi)
 - [Email](mailto:rubelforidi@gmail.com)
 
 ## License

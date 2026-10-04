@@ -1,124 +1,75 @@
-"use client";
-
 import Link from "next/link";
 import { siteConfig } from "@/lib/portfolio-data";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { FadeIn } from "@/components/ui/fade-in";
-import { GridBackground } from "@/components/ui/grid-background";
-import {
-  ArrowDownIcon,
-  EnvelopeSimpleIcon,
-  DownloadSimpleIcon,
-} from "@phosphor-icons/react";
-import { SparklesCore } from "@/components/ui/sparkles";
+import { ArrowUpRight } from "@/components/icons";
+import { RequestTrace } from "@/components/request-trace";
 
 export function Hero() {
   return (
-    // <GridBackground>
-    <section
-      id="about"
-      className="relative flex min-h-[80vh] flex-col justify-center py-20"
-    >
-      <div className="relative space-y-8">
-        <div className="absolute inset-0 h-full w-full">
-          <SparklesCore
-            background="transparent"
-            minSize={0.4}
-            maxSize={1.2}
-            particleDensity={80}
-            className="h-full w-full"
-            particleColor="#a78bfa"
-            speed={1.5}
-          />
-        </div>
-        <FadeIn delay={0.1}>
-          <Badge
-            variant="outline"
-            className="border-green-500/30 bg-green-500/5 px-3 py-1.5 text-xs text-green-400"
-          >
-            <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-green-500" />
-            Available for work
-          </Badge>
-        </FadeIn>
+    <section id="about" className="pt-14 pb-16 sm:pt-20">
+      <div className="grid gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1fr)_10rem]">
+        <img
+          src="/images/my_image2.jpeg"
+          alt={siteConfig.name}
+          width={930}
+          height={1128}
+          className="order-first h-24 w-24 rounded-md border border-border object-cover object-top lg:order-none lg:col-start-2 lg:row-start-1 lg:h-auto lg:w-40 lg:aspect-4/5 lg:justify-self-end"
+        />
 
-        <FadeIn delay={0.2}>
-          <div className="relative">
-            <h1 className="relative z-10 text-5xl font-bold tracking-tight text-neutral-100 sm:text-6xl lg:text-7xl">
-              Hi, I&apos;m{" "}
-              <span className="bg-linear-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                {siteConfig.name}
-              </span>
-            </h1>
-          </div>
-        </FadeIn>
+        <div className="lg:col-start-1 lg:row-start-1">
+          <h1 className="t-display">{siteConfig.name}</h1>
 
-        <FadeIn delay={0.3}>
-          <p className="text-lg font-medium text-neutral-400 sm:text-xl">
-            {siteConfig.role}
+          <p className="t-lead measure mt-6 text-soft">
+            I build and run the backends behind high-traffic consumer products.
+            Two platforms I shipped at Techaircraft, SurveysIQ and Earneasy24,
+            serve more than a million active users on Node.js, MongoDB, and
+            Redis.
           </p>
-        </FadeIn>
 
-        <FadeIn delay={0.4}>
-          <TextGenerateEffect
-            words={siteConfig.tagline}
-            className="max-w-2xl text-base leading-relaxed text-neutral-500"
-          />
-        </FadeIn>
-
-        <FadeIn delay={0.6}>
-          <div className="flex flex-wrap items-center gap-2 pt-2">
-            {siteConfig.skills.map((skill) => (
-              <Badge
-                key={skill}
-                variant="secondary"
-                className="border border-neutral-800 bg-neutral-900/50 text-neutral-400"
-              >
-                {skill}
-              </Badge>
-            ))}
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
+            <p className="t-data flex items-center gap-2 text-signal">
+              <span
+                aria-hidden="true"
+                className="size-1.5 rounded-full bg-signal"
+              />
+              Open to new work
+            </p>
+            <p className="t-data text-faint">2+ years experience</p>
+            <p className="t-data text-faint">{siteConfig.shortLocation}</p>
           </div>
-        </FadeIn>
-      </div>
-      {/* // Action buttons  */}
-      <FadeIn delay={0.7}>
-        <div className="flex flex-wrap items-center gap-3 pt-4">
-          <Button
-            size="lg"
-            className="rounded-xl bg-linear-to-r from-purple-600 to-blue-600 px-6 font-medium text-white shadow-lg shadow-purple-500/20 transition-all hover:from-purple-500 hover:to-blue-500 hover:shadow-purple-500/30"
-            asChild
-          >
-            <Link href={`mailto:${siteConfig.availability.email}`}>
-              <EnvelopeSimpleIcon size={18} className="mr-2" />
-              Get in Touch
-            </Link>
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="rounded-xl border-neutral-800 bg-neutral-900/50 px-6 text-neutral-300 hover:bg-neutral-800 hover:text-white"
-            asChild
-          >
+
+          <div className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-4">
+            <Button className="h-10 rounded-md px-4 text-sm" asChild>
+              <a href={`mailto:${siteConfig.availability.email}`}>Email me</a>
+            </Button>
+            <Button
+              variant="outline"
+              className="h-10 rounded-md px-4 text-sm"
+              asChild
+            >
+              <a
+                href={siteConfig.socials.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Résumé
+                <ArrowUpRight className="ml-1.5 size-3.5 text-faint" />
+              </a>
+            </Button>
             <Link
-              href={siteConfig.socials.resume}
+              href={siteConfig.socials.github}
               target="_blank"
               rel="noopener noreferrer"
+              className="link-quiet t-meta ml-1 inline-flex items-center gap-1.5 text-soft hover:text-foreground"
             >
-              <DownloadSimpleIcon size={18} className="mr-2" />
-              Resume
+              GitHub
+              <ArrowUpRight className="size-3.5 text-faint" />
             </Link>
-          </Button>
+          </div>
         </div>
-      </FadeIn>
-      {/* Scroll indicator */}
-      <FadeIn delay={1} className="mt-auto pt-12">
-        <div className="flex items-center gap-2 text-xs text-neutral-600">
-          <ArrowDownIcon size={14} className="animate-bounce" />
-          Scroll to explore
-        </div>
-      </FadeIn>
+      </div>
+
+      <RequestTrace />
     </section>
-    // </GridBackground>
   );
 }

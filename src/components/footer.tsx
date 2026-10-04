@@ -1,39 +1,38 @@
-"use client";
-
-import { GithubLogoIcon, LinkedinLogoIcon } from "@phosphor-icons/react";
+import Link from "next/link";
 import { siteConfig } from "@/lib/portfolio-data";
-import { useEffect } from "react";
-import axios from "axios";
+
+const links = [
+  { label: "Email", href: `mailto:${siteConfig.availability.email}` },
+  { label: "GitHub", href: siteConfig.socials.github },
+  { label: "LinkedIn", href: siteConfig.socials.linkedin },
+  { label: "Résumé", href: siteConfig.socials.resume },
+];
 
 export function Footer() {
   return (
-    <footer className="border-t border-neutral-800/50 py-8">
-      <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <div className="flex items-center gap-2 text-xs text-neutral-600">
+    <footer className="mt-10 border-t border-border">
+      <div className="mx-auto flex max-w-[1180px] flex-col gap-5 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
+        <p className="t-data flex flex-wrap items-center gap-x-4 text-faint">
           <span>
-            &copy; {new Date().getFullYear()} {siteConfig.name}
+            © {new Date().getFullYear()} {siteConfig.name}
           </span>
-          <span className="text-neutral-800">&middot;</span>
           <span>{siteConfig.location}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <a
-            href={siteConfig.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-600 transition-colors hover:text-neutral-400"
-          >
-            <GithubLogoIcon size={16} />
-          </a>
-          <a
-            href={siteConfig.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-neutral-600 transition-colors hover:text-neutral-400"
-          >
-            <LinkedinLogoIcon size={16} />
-          </a>
-        </div>
+        </p>
+
+        <nav aria-label="Elsewhere" className="flex flex-wrap gap-x-6 gap-y-2">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              {...(link.href.startsWith("http")
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="link-quiet t-data text-soft hover:text-foreground"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </footer>
   );

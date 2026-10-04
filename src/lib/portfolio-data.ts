@@ -2,15 +2,6 @@ export const siteConfig = {
   name: "Rubel Foridi",
   shortName: "Rubel",
   role: "Full Stack Developer",
-  skills: [
-    "Node.js",
-    "Express.js",
-    "MongoDB",
-    "Redis",
-    "AWS ECS",
-    "React",
-    "TypeScript",
-  ],
   tagline:
     "Backend-focused Full Stack Developer with 2+ years of experience building and scaling high-traffic consumer platforms serving 1M+ active users. Expert in Node.js, Express.js, MongoDB, Redis, BullMQ, and AWS ECS with proven track record of payment gateway integrations and CI/CD automation.",
 
@@ -19,6 +10,7 @@ export const siteConfig = {
     email: "rubelforidi@gmail.com",
   },
   location: "Kolkata, West Bengal, India",
+  shortLocation: "Kolkata, India",
   phone: "+91 9064527720",
   socials: {
     github: "https://github.com/Rubel011",
@@ -31,9 +23,9 @@ export const siteConfig = {
 };
 
 export const navLinks = [
-  { label: "About", href: "/#about" },
+  { label: "Work", href: "/#work" },
   { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/#blog" },
+  { label: "Writing", href: "/#writing" },
   { label: "Contact", href: "/#contact" },
 ];
 

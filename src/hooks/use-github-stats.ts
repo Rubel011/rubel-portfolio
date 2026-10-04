@@ -11,22 +11,23 @@ const cache = new Map<string, GitHubStats>();
 
 export function useGitHubStats(repo: string) {
   const [stats, setStats] = useState<GitHubStats | null>(
-    cache.get(repo) ?? null
+    () => cache.get(repo) ?? null,
   );
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let cancelled = false;
     if (cache.has(repo)) {
-      setStats(cache.get(repo)!);
       return;
     }
 
     fetch(`https://api.github.com/repos/${repo}`)
       .then((res) => {
-        if (!res.ok) return null;
+        if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
         return res.json();
       })
       .then((data) => {
-        if (!data) return;
+        if (!data || cancelled) return;
         const result: GitHubStats = {
           stars: data.stargazers_count,
           forks: data.forks_count,
@@ -34,8 +35,14 @@ export function useGitHubStats(repo: string) {
         cache.set(repo, result);
         setStats(result);
       })
-      .catch(() => {});
+      .catch((err: Error) => {
+        if (!cancelled) setError(err.message);
+      });
+
+    return () => {
+      cancelled = true;
+    };
   }, [repo]);
 
-  return stats;
+  return { stats, isLoading: stats === null && error === null, error };
 }

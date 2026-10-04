@@ -4,134 +4,139 @@ import { useState } from "react";
 import Link from "next/link";
 import { navLinks, siteConfig } from "@/lib/portfolio-data";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { ListIcon, XIcon } from "@phosphor-icons/react";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetTrigger,
-  SheetTitle,
-  SheetHeader,
   SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const email = siteConfig.availability.email;
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 w-full border-b border-neutral-800/50 bg-black/60 backdrop-blur-xl"
-    >
-      <div className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
-        <Link
-          href="/"
-          className="group flex items-center gap-2 text-sm font-semibold text-neutral-100 tracking-tight transition-colors hover:text-white"
-        >
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-purple-500 to-blue-500 text-xs font-bold text-white">
-            {siteConfig.name[0]}
+    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-8 px-6">
+        <Link href="/" className="flex items-baseline gap-2.5">
+          <span className="t-h3 whitespace-nowrap">{siteConfig.name}</span>
+          <span className="t-data hidden text-faint sm:inline">
+            {siteConfig.role}
           </span>
-          {siteConfig.name}
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav
+          aria-label="Main"
+          className="hidden items-center gap-7 text-sm md:flex"
+        >
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="rounded-lg px-3 py-1.5 text-xs text-neutral-400 transition-all hover:bg-neutral-800/50 hover:text-neutral-200"
+              className="link-quiet text-soft transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
           ))}
-          <Button
-            size="sm"
-            className="ml-2 h-8 rounded-lg bg-linear-to-r from-purple-600 to-blue-600 px-4 text-xs font-medium text-white hover:from-purple-500 hover:to-blue-500"
-            asChild
-          >
-            <Link href="/#contact">Hire Me</Link>
-          </Button>
         </nav>
 
-        {/* Mobile nav (Shadcn Sheet) */}
-        <div className="md:hidden">
+        <div className="flex items-center gap-2">
+          <Button
+            className="hidden h-9 rounded-md px-3.5 text-sm md:inline-flex"
+            asChild
+          >
+            <a href={`mailto:${email}`}>Email me</a>
+          </Button>
+
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <button
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-neutral-400 transition-colors hover:bg-neutral-800/50 hover:text-neutral-200"
-                aria-label="Toggle menu"
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-9 rounded-md md:hidden"
+                aria-label="Open menu"
               >
-                <ListIcon size={20} />
-              </button>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 5h14M2 13h14"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </Button>
             </SheetTrigger>
             <SheetContent
               side="top"
               showCloseButton={false}
-              className="border-b border-neutral-800/50 bg-black/80 backdrop-blur-2xl"
+              className="border-b border-border bg-background"
             >
-              <div className="mx-auto max-w-4xl px-6">
-                {/* Top bar with logo and close */}
+              <SheetHeader className="sr-only">
+                <SheetTitle>Navigation</SheetTitle>
+                <SheetDescription>Site navigation</SheetDescription>
+              </SheetHeader>
+
+              <div className="mx-auto w-full max-w-[1180px] px-6 pb-6">
                 <div className="flex h-16 items-center justify-between">
-                  <Link
-                    href="/"
-                    onClick={() => setOpen(false)}
-                    className="flex items-center gap-2 text-sm font-semibold text-neutral-100"
-                  >
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-purple-500 to-blue-500 text-xs font-bold text-white">
-                      {siteConfig.name[0]}
-                    </span>
-                    {siteConfig.name}
-                  </Link>
+                  <span className="t-h3">{siteConfig.name}</span>
                   <SheetClose asChild>
-                    <button
-                      className="inline-flex h-9 w-9 items-center justify-center rounded-lg text-neutral-400 transition-colors hover:bg-neutral-800/50 hover:text-neutral-200"
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="size-9 rounded-md"
                       aria-label="Close menu"
                     >
-                      <XIcon size={20} />
-                    </button>
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 18 18"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M4 4l10 10M14 4L4 14"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        />
+                      </svg>
+                    </Button>
                   </SheetClose>
                 </div>
 
-                <SheetHeader className="sr-only">
-                  <SheetTitle>Navigation</SheetTitle>
-                  <SheetDescription>Mobile navigation menu</SheetDescription>
-                </SheetHeader>
+                <Separator />
 
-                {/* Nav links */}
-                <nav className="flex flex-col gap-1 border-t border-neutral-800/50 py-4">
+                <nav aria-label="Main" className="flex flex-col py-2">
                   {navLinks.map((link) => (
                     <Link
                       key={link.label}
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="rounded-lg px-3 py-3 text-sm font-medium text-neutral-300 transition-all hover:bg-white/5 hover:text-white"
+                      className="border-b border-border py-3 text-[0.9375rem] text-soft last:border-b-0 hover:text-foreground"
                     >
                       {link.label}
                     </Link>
                   ))}
                 </nav>
 
-                {/* CTA */}
-                <div className="border-t border-neutral-800/50 py-4">
-                  <Button
-                    size="lg"
-                    className="h-11 w-full rounded-xl bg-linear-to-r from-purple-600 to-blue-600 text-sm font-medium text-white hover:from-purple-500 hover:to-blue-500"
-                    asChild
-                  >
-                    <Link href="/#contact" onClick={() => setOpen(false)}>
-                      Hire Me
-                    </Link>
-                  </Button>
-                </div>
+                <Button className="mt-4 h-10 w-full rounded-md text-sm" asChild>
+                  <a href={`mailto:${email}`} onClick={() => setOpen(false)}>
+                    Email me
+                  </a>
+                </Button>
               </div>
             </SheetContent>
           </Sheet>
         </div>
       </div>
-    </motion.header>
+    </header>
   );
 }
